@@ -35,7 +35,7 @@ class TextListRerank(ExternalDataTool):
         if not config.get('aws_region'):
             raise ValueError('aws_region is required')
 
-    def sagemaker_rerank(self, query_input: str, docs: List[Any], rerank_endpoint:str):
+    def sagemaker_rerank(self, query_input: str, docs: List[str], rerank_endpoint:str):
         inputs = [query_input]*len(docs)
         response_model = self.sagemaker_client.invoke_endpoint(
             EndpointName=rerank_endpoint,
@@ -52,7 +52,7 @@ class TextListRerank(ExternalDataTool):
         scores = json_obj['scores']
         return scores if isinstance(scores, list) else [scores]
 
-    def rerank(self, query_input: str, docs: List[Any], topk:int) -> List[(str,float)]:
+    def rerank(self, query_input: str, docs: List[str], topk:int) -> List[(str,float)]:
         """
         Query the external data tool.
 
@@ -66,7 +66,7 @@ class TextListRerank(ExternalDataTool):
             aws_region = self.config.get('aws_ak')
             self.sagemaker_client = boto3.client("sagemaker-runtime", )
 
-        scores = self.sagemaker_rerank(query_input: str, docs: List[Any], rerank_endpoint)
+        scores = self.sagemaker_rerank(query_input: str, docs: List[str], rerank_endpoint)
         sorted_scores = sorted(zip(docs, scores), key=lambda x: x[1], reverse=True)
 
         return sorted_scores[:topk]
