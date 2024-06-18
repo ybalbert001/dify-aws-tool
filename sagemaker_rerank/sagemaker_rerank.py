@@ -7,7 +7,7 @@ class TextListRerank(ExternalDataTool):
     """
     The name of custom type must be unique, keep the same with directory and file name.
     """
-    name: str = "Text List Similiarity & relevant Ranking"
+    name: str = "sagemaker_rerank"
     sagemaker_client = None
 
     @classmethod
@@ -52,7 +52,7 @@ class TextListRerank(ExternalDataTool):
         scores = json_obj['scores']
         return scores if isinstance(scores, list) else [scores]
 
-    def rerank(self, query_input: str, docs: List[str], topk:int) -> List[(str,float)]:
+    def rerank(self, query_input: str, docs: List[str], topk:int) -> list:
         """
         Query the external data tool.
 
