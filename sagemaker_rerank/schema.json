@@ -1,0 +1,75 @@
+{
+    "label": {
+        "en-US": "text similiarity ranking",
+        "zh-Hans": "文本相似性排序"
+    },
+    "form_schema": [
+        {
+            "type": "text-input",
+            "label": {
+                "en-US": "SageMaker Rerank Endpoint",
+                "zh-Hans": "SageMaker重排序推理端点"
+            },
+            "variable": "api_endpoint",
+            "required": true,
+            "default": "...",
+            "placeholder": "bge-reranker-***-endpoint"
+        },
+        {
+            "type": "text-input",
+            "label": {
+                "en-US": "AK for aws user",
+                "zh-Hans": "AK for aws user"
+            },
+            "variable": "aws_ak",
+            "required": true,
+            "default": "...",
+            "placeholder": "AKIA2******FYZU7OO6"
+        },
+        {
+            "type": "text-input",
+            "label": {
+                "en-US": "SK for aws user",
+                "zh-Hans": "SK for aws user"
+            },
+            "variable": "aws_sk",
+            "required": true,
+            "default": "...",
+            "placeholder": "SpU4F2*******************j8O7LW8lw9hM"
+        },
+        {
+            "type": "select",
+            "label": {
+                "en-US": "SageMaker Rerank Endpoint",
+                "zh-Hans": "SageMaker重排序推理端点"
+            },
+            "variable": "aws_region",
+            "options": [
+                {
+                    "label": {
+                        "en-US": "us-west-2",
+                        "zh-Hans": "us-west-2"
+                    },
+                    "value": "us-west-2"
+                },
+                {
+                    "label": {
+                        "en-US": "us-east-1",
+                        "zh-Hans": "us-east-1"
+                    },
+                    "value": "us-east-1"
+                },
+                {
+                    "label": {
+                        "en-US": "cn-north-1",
+                        "zh-Hans": "cn-north-1"
+                    },
+                    "value": "cn-north-1"
+                }
+            ],
+            "default": "us-west-2",
+            "placeholder": "us-west-2",
+            "required": true
+        }
+    ]
+}
