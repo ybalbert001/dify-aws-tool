@@ -66,7 +66,7 @@ class TextListRerank(ExternalDataTool):
             aws_region = self.config.get('aws_ak')
             self.sagemaker_client = boto3.client("sagemaker-runtime", )
 
-        scores = self.sagemaker_rerank(query_input: str, docs: List[str], rerank_endpoint)
+        scores = self.sagemaker_rerank(query_input, docs, rerank_endpoint)
         sorted_scores = sorted(zip(docs, scores), key=lambda x: x[1], reverse=True)
 
         return sorted_scores[:topk]
