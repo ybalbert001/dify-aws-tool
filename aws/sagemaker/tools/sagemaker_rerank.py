@@ -74,7 +74,7 @@ class SageMakerReRankTool(BuiltinTool):
             results = [ item[0] for item in sorted_scores[:self.topk]]
 
             line = 9
-            return [ self.create_text_message(content=result) for result in results ]
+            return [ self.create_text_message(text=result) for result in results ]
         except Exception as e:
             return self.create_text_message(f'Exception {str(e)}, line : {line}')
     
