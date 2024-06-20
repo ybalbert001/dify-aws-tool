@@ -18,7 +18,7 @@ class SageMakerReRankTool(BuiltinTool):
             Body=json.dumps(
                 {
                     "inputs": inputs,
-                    "docs": [item['doc'] for item in docs]
+                    "docs": docs
                 }
             ),
             ContentType="application/json",
