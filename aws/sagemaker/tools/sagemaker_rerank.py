@@ -4,9 +4,9 @@ from core.tools.tool.builtin_tool import BuiltinTool
 
 
 class SageMakerReRankTool(BuiltinTool):
-    sagemaker_client = None
-    sagemaker_endpoint = None
-    topk = None
+    sagemaker_client: Any = None
+    sagemaker_endpoint:str = None
+    topk:int = None
 
     def _sagemaker_rerank(self, query_input: str, docs: List[str], rerank_endpoint:str):
         inputs = [query_input]*len(docs)
