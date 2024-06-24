@@ -41,7 +41,7 @@ class SageMakerReRankTool(BuiltinTool):
                 access_key = self.runtime.credentials.get('aws_access_key_id', None)
                 secret_key = self.runtime.credentials.get('aws_secret_access_key', None)
                 aws_region = self.runtime.credentials.get('aws_region', None)
-                if access_key and secret_key
+                if access_key and secret_key:
                     self.sagemaker_client = boto3.client("sagemaker-runtime", region_name=aws_region, aws_access_key_id=access_key, aws_secret_access_key=secret_key)
                 else:
                     # use iam role
