@@ -1,5 +1,5 @@
 identity:
-  name: sagemaker_rerank
+  name: sagemaker_text_rerank
   author: Dify
   label:
     en_US: SagemakerRerank
@@ -13,6 +13,19 @@ description:
     pt_BR: A tool for performing text similarity ranking.
   llm: A tool for performing text similarity ranking.
 parameters:
+  - name: sagemaker_endpoint
+    type: string
+    required: true
+    label:
+      en_US: sagemaker endpoint for reranking
+      zh_Hans: 重排序的SageMaker 端点
+      pt_BR: sagemaker endpoint for reranking
+    human_description:
+      en_US: sagemaker endpoint for reranking
+      zh_Hans: 重排序的SageMaker 端点
+      pt_BR: sagemaker endpoint for reranking
+    llm_description: sagemaker endpoint for reranking
+    form: form
   - name: query
     type: string
     required: true
