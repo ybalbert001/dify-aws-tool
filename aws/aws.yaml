@@ -1,18 +1,34 @@
 identity:
   author: Dify
-  name: AWS
+  name: aws
   label:
     en_US: AWS
     zh_Hans: 亚马逊云科技
     pt_BR: AWS
   description:
     en_US: services on AWS.
-    zh_Hans: 各类AWS上的云服务
+    zh_Hans: 各类AWS上的
     pt_BR: services on AWS.
   icon: icon.svg
   tags:
     - search
 credentials_for_provider:
+  sagemaker_endpoint:
+    type: text-input
+    required: true
+    label:
+      en_US: sagemaker endpoint
+      zh_Hans: sagemaker 端点
+      pt_BR: sagemaker endpoint
+    placeholder:
+      en_US: Please input your sagemaker endpoint
+      zh_Hans: 请输入你的 sagemaker 端点
+      pt_BR: Please input your sagemaker endpoint
+    help:
+      en_US: An endpoint is like "bge-reranker-2024-02-01-02-12-47-505-endpoint"
+      zh_Hans: 例如 "bge-reranker-2024-02-01-02-12-47-505-endpoint"
+      pt_BR: An endpoint is like "bge-reranker-2024-02-01-02-12-47-505-endpoint"
+    default: bge-reranker-2024-02-01-02-12-47-505-endpoint
   aws_access_key_id:
     type: secret-input
     required: true
