@@ -1,5 +1,5 @@
 from core.tools.errors import ToolProviderCredentialValidationError
-from core.tools.provider.builtin.sagemaker.tools.sagemaker_text_rerank import SageMakerReRankTool
+from core.tools.provider.builtin.aws.tools.sagemaker_text_rerank import SageMakerReRankTool
 from core.tools.provider.builtin_tool_provider import BuiltinToolProviderController
 
 
