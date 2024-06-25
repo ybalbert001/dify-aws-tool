@@ -58,15 +58,16 @@ class SageMakerReRankTool(BuiltinTool):
                 return self.create_text_message('Please input query')
             
             line = 4
-            candidate_texts = tool_parameters.get('candidate_texts', '')
+            candidate_texts = tool_parameters.get('candidate_texts', None)
             if not candidate_texts:
                 return self.create_text_message('Please input candidate_texts')
             
             line = 5
-            candidate_docs = candidate_texts.split('$$$')
+            candidate_docs = json.loads(candidate_texts)
+            docs = [ item.get('content', None) for item in candidate_docs ]
 
             line = 6
-            scores = self._sagemaker_rerank(query_input=query, docs=candidate_docs, rerank_endpoint=self.sagemaker_endpoint)
+            scores = self._sagemaker_rerank(query_input=query, docs=docs, rerank_endpoint=self.sagemaker_endpoint)
 
             line = 7
             sorted_scores = sorted(zip(candidate_docs, scores), key=lambda x: x[1], reverse=True)
@@ -75,7 +76,9 @@ class SageMakerReRankTool(BuiltinTool):
             results = [ item[0] for item in sorted_scores[:self.topk]]
 
             line = 9
-            return [ self.create_text_message(text=result) for result in results ]
+            results_str = json.dumps(results, ensure_ascii=False)
+            return self.create_text_message(text=results_str)
+            
         except Exception as e:
             return self.create_text_message(f'Exception {str(e)}, line : {line}')
     

@@ -1,5 +1,5 @@
 identity:
-  author: Dify
+  author: AWS
   name: aws
   label:
     en_US: AWS
@@ -7,7 +7,7 @@ identity:
     pt_BR: AWS
   description:
     en_US: services on AWS.
-    zh_Hans: 各类AWS上的
+    zh_Hans: 各类AWS上的服务
     pt_BR: services on AWS.
   icon: icon.svg
   tags:
