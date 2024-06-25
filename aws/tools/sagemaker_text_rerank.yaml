@@ -67,3 +67,16 @@ parameters:
     min: 1
     max: 10
     default: 5
+  - name: aws_region
+    type: string
+    required: false
+    label:
+      en_US: region of sagemaker endpoint
+      zh_Hans: SageMaker 端点所在的region
+      pt_BR: region of sagemaker endpoint
+    human_description:
+      en_US: region of sagemaker endpoint
+      zh_Hans: SageMaker 端点所在的region
+      pt_BR: region of sagemaker endpoint
+    llm_description: region of sagemaker endpoint
+    form: form
