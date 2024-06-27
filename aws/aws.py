@@ -16,7 +16,8 @@ class SageMakerProvider(BuiltinToolProviderController):
                     "sagemaker_endpoint" : "",
                     "query": "misaka mikoto",
                     "candidate_texts" : "hello$$$hello world",
-                    "topk" : 5
+                    "topk" : 5,
+                    "aws_region" : ""
                 },
             )
         except Exception as e:

@@ -38,14 +38,11 @@ class SageMakerReRankTool(BuiltinTool):
         line = 0
         try:
             if not self.sagemaker_client:
-                access_key = self.runtime.credentials.get('aws_access_key_id', None)
-                secret_key = self.runtime.credentials.get('aws_secret_access_key', None)
-                aws_region = self.runtime.credentials.get('aws_region', None)
-                if access_key and secret_key:
-                    self.sagemaker_client = boto3.client("sagemaker-runtime", region_name=aws_region, aws_access_key_id=access_key, aws_secret_access_key=secret_key)
-                else:
-                    # use iam role
+                aws_region = tool_parameters.get('aws_region', None)
+                if aws_region:
                     self.sagemaker_client = boto3.client("sagemaker-runtime", region_name=aws_region)
+                else:
+                    self.sagemaker_client = boto3.client("sagemaker-runtime")
 
             line = 1
             if not self.sagemaker_endpoint:
@@ -61,15 +58,16 @@ class SageMakerReRankTool(BuiltinTool):
                 return self.create_text_message('Please input query')
             
             line = 4
-            candidate_texts = tool_parameters.get('candidate_texts', '')
+            candidate_texts = tool_parameters.get('candidate_texts', None)
             if not candidate_texts:
                 return self.create_text_message('Please input candidate_texts')
             
             line = 5
-            candidate_docs = candidate_texts.split('$$$')
+            candidate_docs = json.loads(candidate_texts)
+            docs = [ item.get('content', None) for item in candidate_docs ]
 
             line = 6
-            scores = self._sagemaker_rerank(query_input=query, docs=candidate_docs, rerank_endpoint=self.sagemaker_endpoint)
+            scores = self._sagemaker_rerank(query_input=query, docs=docs, rerank_endpoint=self.sagemaker_endpoint)
 
             line = 7
             sorted_scores = sorted(zip(candidate_docs, scores), key=lambda x: x[1], reverse=True)
@@ -78,7 +76,9 @@ class SageMakerReRankTool(BuiltinTool):
             results = [ item[0] for item in sorted_scores[:self.topk]]
 
             line = 9
-            return [ self.create_text_message(text=result) for result in results ]
+            results_str = json.dumps(results, ensure_ascii=False)
+            return self.create_text_message(text=results_str)
+            
         except Exception as e:
             return self.create_text_message(f'Exception {str(e)}, line : {line}')
     
