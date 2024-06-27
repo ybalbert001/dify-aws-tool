@@ -6,7 +6,7 @@
 # Dify AWS Tools
 
 ## 简介
-本仓库提供了一些示例代码，展示如何将基于 AWS 服务的一些工具集成到 [Dify](https://github.com/langgenius/dify) 中。
+本仓库提供了一些示例代码，展示如何将基于 AWS 服务的一些工具集成到 [Dify](https://github.com/langgenius/dify) 中。 除了参考代码，你也可以参考[官方指引](https://docs.dify.ai/guides/tools/quick-tool-integration) 
 
 ## 工具
 - 文本重排序工具（基于 SageMaker）
