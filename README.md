@@ -6,7 +6,7 @@
 # Dify AWS Tools
 
 ## Introduction
-This repo provide some sample code to show how to integrate some tools which based on AWS Service to [Dify](https://github.com/langgenius/dify)
+This repo provide some sample code to show how to integrate some tools which based on AWS Service to [Dify](https://github.com/langgenius/dify). In addition to the reference code, you can also refer to the [official guide](https://docs.dify.ai/guides/tools/quick-tool-integration) for more information.
 
 ## Tools
 - Text Rerank Tool (based on SageMaker)
